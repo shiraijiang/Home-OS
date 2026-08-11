@@ -216,13 +216,13 @@ Base 应为中性光照版本：
 
 所有真正承担视觉约束的图片必须入库到 `assets/reference/`，不能只在聊天里用“那张图”指代。
 
-当前参考角色：
+当前参考角色及准确文件名：
 
-- `scene-master-default.*`：用户提供的大房间概念图。Default 画风 + 空间构图母版；约束镜头、透视、房间边界、家具比例和主要位置。
-- `pixel-style-reference.*`：用户提供的小房间像素参考图；只约束像素粗度、边缘语言和信息密度。
-- `style-reference-alt-01.*`：当前讨论中 ChatGPT 生成的另一版室内图；仅作为未来可切换画风的方向参考，不约束 Default 的布局或视觉执行。
+- `assets/reference/scene-master-default.PNG`：用户提供的大房间概念图。Default 画风 + 空间构图母版；约束镜头、透视、房间边界、家具比例和主要位置。
+- `assets/reference/pixel-style-reference.PNG`：用户提供的小房间像素参考图；只约束像素粗度、边缘语言和信息密度。
+- `assets/reference/style-reference-alt-01.PNG`：当前讨论中 ChatGPT 生成的另一版室内图；仅作为未来可切换画风的方向参考，不约束 Default 的布局或视觉执行。
 
-在图片真正入库之前，执行者不得自行找替代图、生成替代母版或根据文字重建参考图。
+以上三张参考图已于 2026-08-11 入库。执行者必须读取实际文件，不得自行找替代图、生成替代母版或根据文字重建参考图。
 
 ## AI 美术修改硬性规则
 
