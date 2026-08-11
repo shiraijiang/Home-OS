@@ -43,9 +43,17 @@
         "玄关与鞋柜本体", "衣架/开放式置物架本体", "卧室入口结构",
         "扫地机器人充电口/充电座", "盆栽", "鱼缸主体与固定造景",
         "猫用品固定物件（食盆、水碗、猫窝、小型抓板/抓柱、玩具收纳）",
-        "水槽旁一瓶固定洗洁精", "冰箱门少量固定贴饰", "灯具本体"
+        "水槽旁一瓶固定洗洁精", "冰箱门少量固定贴饰",
+        "冰箱顶垂吊绿植", "冰箱上方墙面小方形智能面板", "灯具本体"
       ],
-      "pending": ["冰箱顶固定装饰组合（尚未确认，见 06-backlog.md）"],
+      "fridge_top": {
+        "status": "confirmed",
+        "decision": 77,
+        "items": ["垂吊绿植（藤蔓垂到冰箱侧面）", "冰箱正面少量冰箱贴", "冰箱上方墙面小方形智能面板"],
+        "may_add": false,
+        "may_clear": false,
+        "note": "垂吊绿植需打破冰箱矩形天际线，不得压平到顶面以内"
+      },
       "neutral_lighting": {
         "interior_lights": "off",
         "directional_sunlight": false,
@@ -209,6 +217,27 @@
     "mood_reference": "星露谷物语 祝尼魔（只参考氛围，不复制外形）",
     "speaks": false,
     "no_rewards": true
+  },
+  "aquarium": {
+    "location": "鞋柜上",
+    "decision": 76,
+    "tank": "transparent_glass",
+    "background_panel": false,
+    "substrate": "white_sand_dominant",
+    "rocks": {
+      "shape": "rounded_natural",
+      "grouping": "clustered",
+      "size_hierarchy": "clear",
+      "negative_space": "preserved",
+      "colors": ["灰白", "亮粉", "薄荷绿"]
+    },
+    "fish": false,
+    "plants": false,
+    "figures": false,
+    "coral_style": false,
+    "avoid": ["灰蒙马卡龙", "荧光色", "深色水族背景"],
+    "layers": { "tank_and_scape": "base", "light_fixture": "base", "light_effect": "lighting" },
+    "seasonal_rework": false
   },
   "random_events": {
     "principle": "不影响正常使用，但偶尔看到会觉得有意思",

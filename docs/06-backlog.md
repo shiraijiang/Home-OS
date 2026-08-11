@@ -70,17 +70,8 @@
 
 窗框、玻璃、窗帘、百叶属于 Base，留下。
 
-### 冰箱顶固定装饰的母版现状
-
-新旧两版母版上，冰箱顶都是**一盆垂吊绿植**（藤蔓垂到冰箱侧面），冰箱正面有少量冰箱贴，冰箱上方墙面另有一个小方形智能面板。
-
-待确认的是：就以母版现状为准，还是另行指定组合。确认后转入 `04-art.md` 的 Base 规格并追加决定日志。
 
 ## 尚未确认
-
-### 冰箱顶固定装饰
-
-需要确认具体物件、数量、位置和轮廓。确认后转入 `04-art.md` 的 Base 规格并追加决定日志。
 
 ### 正式调色板
 
@@ -94,6 +85,8 @@
 
 ## 已完成，不再作为 Backlog
 
-- `assets/reference/scene-master-default.PNG` 已入库。
+- `assets/reference/scene-master-default.PNG` 已入库，并于 2026-08-11 更新为干净版（#75）。
 - `assets/reference/pixel-style-reference.PNG` 已入库。
 - `assets/reference/style-reference-alt-01.PNG` 已入库。
+- 冰箱顶固定装饰已确认（#77），规格转入 `04-art.md`。
+- 鱼缸造景已确认（#76），规格转入 `04-art.md`。
