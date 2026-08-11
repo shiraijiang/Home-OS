@@ -18,10 +18,10 @@
 - 独立私人菜谱库及菜谱格式
 - 美术连续性、分层、时间 / 季节规则
 - 未来隐居地入口位置
+- Default 空间母版、像素语言参考图与 Alt-01 备选画风参考均已入库
 
 当前仍缺：
 
-- 视觉母版和像素粗度参考图的真实图片文件入库
 - 冰箱顶固定装饰最终组合
 - Base 完成后的正式调色板
 - AI 出图后的正式像素处理脚本（尚未开始写代码）
@@ -65,6 +65,18 @@
 
 ---
 
+## 美术参考
+
+当前真实文件：
+
+- `assets/reference/scene-master-default.PNG`：Default 空间母版
+- `assets/reference/pixel-style-reference.PNG`：像素语言参考
+- `assets/reference/style-reference-alt-01.PNG`：未来备选画风参考
+
+具体约束见 `docs/04-art.md` 与 `assets/reference/README.md`。
+
+---
+
 ## 目录
 
 | 路径 | 内容 |
@@ -76,10 +88,10 @@
 | `docs/04-art.md` | 场景母版、尺寸、分层、时间/季节、美术连续性 |
 | `docs/05-decisions.md` | 决定日志（保留历史并追加覆盖决定） |
 | `docs/06-backlog.md` | 已推迟与尚未确认内容 |
-| `assets/reference/README.md` | 视觉参考图入库规则与当前缺口 |
+| `assets/reference/README.md` | 视觉参考图说明 |
 | `assets/palette.json` | 调色板状态；当前尚未锁定最终颜色 |
 | `assets/prompts.md` | Home-OS 美术生成 / 修改的固定约束 |
 
 ## 尚未创建的执行文件
 
-`tools/pixelize.py` 目前**不存在**。项目尚未进入代码执行阶段；正式 Base 和调色板确认后，再实现中值滤波 → 降采样 → 调色板量化流程。README 不再把它写成已存在文件。
+`tools/pixelize.py` 目前**不存在**。项目尚未进入代码执行阶段；正式 Base 和调色板确认后，再实现中值滤波 → 降采样 → 调色板量化流程。
