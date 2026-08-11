@@ -1,0 +1,217 @@
+{
+  "$comment": "docs/04-art.md 的机器可读镜像。真本是 04-art.md，两者冲突时以 04-art.md 为准（#72）。改这里之前先改 04-art.md。",
+  "version": "2026-08-11",
+  "styles": {
+    "current": "default",
+    "default": {
+      "scene_master": "assets/reference/scene-master-default.PNG",
+      "pixel_reference": "assets/reference/pixel-style-reference.PNG"
+    },
+    "future_alt": {
+      "reference": "assets/reference/style-reference-alt-01.PNG",
+      "status": "direction_only",
+      "note": "不替代 Default，不约束当前执行；第一版不实现画风切换"
+    },
+    "switching_rules": [
+      "画风切换只改美术表现，不改功能坐标、家具语义、主要布局和交互入口",
+      "每套画风独立维护 style reference / palette / sprite 规则",
+      "同一画风内部仍须遵守五层分层"
+    ]
+  },
+  "scene": {
+    "logical_size": { "width": 320, "height": 420 },
+    "working_scale": 4,
+    "working_master": { "width": 1280, "height": 1680 },
+    "target": "mobile_portrait",
+    "grid": 16,
+    "grid_applies_to": ["architecture", "fixed_furniture"],
+    "grid_optional_for": ["dynamic_sprites"],
+    "notes": [
+      "logical_size 是逻辑尺寸，不是物理输出分辨率；前端等比显示，不拉伸房间",
+      "UI 与 pixel scene 分离；点击热区绑定 logical scene 坐标",
+      "长屏用 UI 区域 / 留白适配",
+      "第一版不专门设计横屏"
+    ]
+  },
+  "layers": {
+    "base": {
+      "description": "长期不移动的建筑、家具和固定装饰；中性光照，不表达时间",
+      "contents": [
+        "墙", "地面", "正门",
+        "主景观窗窗框/玻璃/窗帘", "左侧墙的窗及百叶", "右侧玻璃结构",
+        "厨房主体", "独立冰箱", "岛台", "吧台", "吧台凳",
+        "玄关与鞋柜本体", "衣架/开放式置物架本体", "卧室入口结构",
+        "扫地机器人充电口/充电座", "盆栽", "鱼缸主体与固定造景",
+        "猫用品固定物件（食盆、水碗、猫窝、小型抓板/抓柱、玩具收纳）",
+        "水槽旁一瓶固定洗洁精", "冰箱门少量固定贴饰", "灯具本体"
+      ],
+      "pending": ["冰箱顶固定装饰组合（尚未确认，见 06-backlog.md）"],
+      "neutral_lighting": {
+        "interior_lights": "off",
+        "directional_sunlight": false,
+        "window_grid_shadows": false,
+        "long_shadows": false,
+        "time_of_day": null,
+        "contact_shadows": "minimal",
+        "window_view": "none"
+      },
+      "excluded": ["右侧额外小矮柜", "地上靠墙摆放的画"],
+      "excluded_note": "指不再往上加，不是删掉母版上已有的家具"
+    },
+    "environment": {
+      "description": "窗外内容，独立于 Base",
+      "contents": ["天空", "远景/水面/城市", "天气"],
+      "baked_into_base": false
+    },
+    "lighting": {
+      "description": "所有时间性光照与灯光效果",
+      "contents": ["自然光", "室内灯", "间接照明", "方向性阴影", "窗格投影", "光晕"],
+      "baked_into_base": false,
+      "note": "灯具本体属于 Base，亮灭与光效属于 Lighting"
+    },
+    "dynamic": {
+      "description": "会移动、出现、消失或改变位置的物件与角色",
+      "contents": [
+        "猫", "扫地机器人", "黄色小精灵", "钥匙", "鞋", "衣服", "随身包",
+        "饮料", "酒", "杯子", "食物", "散落猫玩具", "临时生活物件",
+        "电子设备的具体动态时间显示"
+      ],
+      "baked_into_base": false,
+      "pixel_density": "must_match_active_style_base"
+    },
+    "seasonal": {
+      "description": "季节对 Environment / Lighting / 少量环境表现的控制",
+      "redesigns_interior": false,
+      "indoor_plants": "fixed_v1",
+      "aquarium": "fixed_summer_look"
+    }
+  },
+  "time_states": ["early_morning", "day", "evening", "night"],
+  "time_state_rules": {
+    "shared_base": true,
+    "full_image_filter_only": false,
+    "expressed_by": ["environment", "lighting", "dynamic"],
+    "day": {
+      "indirect_lighting": "off",
+      "keys_on_rack": false,
+      "entry_shoes": "fewer",
+      "bar_stools": "aligned",
+      "drink_pool": ["water", "tea", "juice", "none"]
+    },
+    "night": {
+      "indirect_lighting": "on",
+      "keys_on_rack": true,
+      "entry_shoes": "day_plus_two_pairs",
+      "bar_stools": "slightly_displaced",
+      "first_drink": { "always": true, "primary": "whisky", "occasional": "beer", "bottle_required": false },
+      "second_drink": { "always": false, "pool": "cocktails" }
+    },
+    "bed_state_changes": false,
+    "curtains_blinds_daily_animation": false
+  },
+  "pixel_art": {
+    "goal": "high_detail_pixel_illustration",
+    "density_vs_original_concept": "coarser",
+    "shading": "cel_flat",
+    "gradients": false,
+    "animation_timing": ["linear", "steps()"],
+    "postprocess": ["median_filter", "downsample", "palette_quantize"],
+    "requirements": [
+      "直线、柜门、窗框可见像素阶梯",
+      "木材不画大量连续木纹",
+      "混凝土与地砖不铺高频细碎噪点",
+      "植物用像素簇，不逐叶精描",
+      "金属与玻璃只用少量高光块",
+      "小物件明显简化",
+      "阴影用明确色块"
+    ],
+    "forbidden": [
+      "单纯降低整图分辨率模拟 pixel art",
+      "逐轮增加纹理、写实程度和像素密度",
+      "从成品图里抠 sprite"
+    ]
+  },
+  "materials": ["清水混凝土", "深色不发黄木", "不锈钢", "玻璃", "铁艺"],
+  "color_rules": {
+    "warmth_source": "lighting_only",
+    "only_high_saturation": "翠绿",
+    "yellow_usage": ["注意状态", "黄色小精灵"],
+    "yellow_as_large_area": false,
+    "palette_locked": false,
+    "palette_file": "assets/palette.json",
+    "per_image_color_expansion": false
+  },
+  "camera": {
+    "view": "top_down_tilted",
+    "furniture_faces": ["top", "front"],
+    "walls_drawn": ["back"],
+    "side_walls": "cropped_at_frame_edge"
+  },
+  "typography": { "font": "DotGothic16", "scope": "global" },
+  "entries": {
+    "island": "今天吃什么 / 抽卡",
+    "fridge": "私人菜谱库",
+    "door": "设置",
+    "bar": { "status": "deferred", "note": "记一笔推迟到下期；纯造型，不可点" },
+    "robot_dock": { "status": "reserved", "note": "未来「隐居地」入口；当前不可点、无提示" }
+  },
+  "room_expansion": {
+    "reserve_visual_possibility": true,
+    "implement_in_v1": false,
+    "note": "门、可拆墙一类结构不得被局部修改堵死"
+  },
+  "generation_rules": {
+    "prefer": ["local_edit", "separate_layers", "sprites"],
+    "avoid": "full_image_regeneration",
+    "locked": [
+      "不改变镜头",
+      "不改变透视",
+      "不改变房间外轮廓",
+      "不改变主要家具位置与比例",
+      "不因局部修改重新解释整个场景",
+      "不自动增强细节、光影、材质纹理和写实程度",
+      "不把 Dynamic 烘焙进 Base",
+      "不把 Environment 烘焙进 Base",
+      "不把 Lighting 烘焙进 Base",
+      "缺失参考图时不得自行搜索、生成或猜测替代母版"
+    ],
+    "base_stage_forbidden": [
+      "方向性阳光", "具体窗外景色", "开着的灯和光晕", "动态物件",
+      "设备动态显示", "高光爆点", "复杂反射", "细密纹理", "渐变"
+    ]
+  },
+  "cat": {
+    "layer": "dynamic",
+    "role": "resident_not_assistant",
+    "state_probability_by_time": {
+      "early_morning": "mostly_sleeping",
+      "day": "mostly_sleeping",
+      "evening": "more_active",
+      "night": "most_active"
+    },
+    "no_stats": ["饥饿值", "好感度", "健康值", "每日照顾", "打卡", "任务提醒"]
+  },
+  "robot_vacuum": {
+    "body_layer": "dynamic",
+    "dock_layer": "base",
+    "dock_position": "against_wall",
+    "events": {
+      "occasional": "碰到地面上的猫后停一下或转向，猫可能不理或挪两步",
+      "rare": "猫四脚站在移动中的机器人上保持平衡",
+      "no_popup": true,
+      "no_achievement": true,
+      "no_physics_sim": true
+    }
+  },
+  "sprite_yellow": {
+    "layer": "dynamic",
+    "primary_color": "yellow",
+    "mood_reference": "星露谷物语 祝尼魔（只参考氛围，不复制外形）",
+    "speaks": false,
+    "no_rewards": true
+  },
+  "random_events": {
+    "principle": "不影响正常使用，但偶尔看到会觉得有意思",
+    "forbidden": ["打卡", "KPI", "计分", "连续签到", "成就压力", "每日任务", "需要每天维护的状态"]
+  }
+}
