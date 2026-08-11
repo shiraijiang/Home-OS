@@ -11,9 +11,11 @@
 - `docs/04-art.md`
 - `assets/prompts.md`
 - `assets/reference/README.md`
-- `assets/reference/` 中实际存在的参考图片
+- `assets/reference/scene-master-default.PNG`
+- `assets/reference/pixel-style-reference.PNG`
+- 如讨论未来备选画风，再读 `assets/reference/style-reference-alt-01.PNG`
 
-如果参考图片尚未入库，不得凭聊天描述、自行搜索或自行生成替代参考图来重建视觉母版。
+不得凭聊天描述、自行搜索或自行生成替代参考图来重建视觉母版。
 
 ## 怎么跟我配合
 
@@ -36,6 +38,9 @@
 
 ## 美术连续性
 
+- Default 空间母版为 `assets/reference/scene-master-default.PNG`
+- Default 像素语言参考为 `assets/reference/pixel-style-reference.PNG`
+- `assets/reference/style-reference-alt-01.PNG` 只用于未来可切换画风方向，不得覆盖 Default
 - 不重新设计整个房间
 - 不擅自改变镜头、透视、家具比例和主要家具位置
 - 优先局部修改和分层
@@ -51,12 +56,10 @@
 
 ## 进度
 
-现在：设计资料已经基本补齐，业务代码尚未开工。
+现在：设计资料已经基本补齐，三张美术参考图已经入库，业务代码尚未开工。
 
 当前真正缺口：
 
-1. `assets/reference/` 中的场景视觉母版真实图片
-2. `assets/reference/` 中的像素粗度参考图真实图片
-3. 冰箱顶固定装饰最终组合
-4. Base 完成后的正式调色板
-5. 正式像素处理脚本（进入代码阶段后再写）
+1. 冰箱顶固定装饰最终组合
+2. Base 完成后的正式调色板
+3. 正式像素处理脚本（进入代码阶段后再写）
