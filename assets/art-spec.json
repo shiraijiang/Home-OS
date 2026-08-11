@@ -218,6 +218,17 @@
     "speaks": false,
     "no_rewards": true
   },
+  "digital_clock": {
+    "decision": 78,
+    "location": "衣架下层",
+    "body_layer": "base",
+    "digits_layer": "dynamic",
+    "source": "system_time",
+    "follows_time_state": false,
+    "affected_by_season_light_lock": false,
+    "digits_rendering": "pixel_font_at_base_density",
+    "note": "锁定的是光，不是钟；数字不得烘焙进 Base"
+  },
   "aquarium": {
     "location": "鞋柜上",
     "decision": 76,
